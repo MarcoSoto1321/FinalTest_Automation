@@ -1,6 +1,6 @@
-
+@priceProducts
 Feature: Búsqueda y filtrado de productos en Mercado Libre
-
+    @finaltest
     Scenario: Búsqueda de "playstation 5" nuevos en CDMX ordenados por mayor precio
         Given que el usuario está en la página de Mercado Libre de "México"
         When busca el término "playstation 5"
