@@ -49,7 +49,7 @@ class finaltestPage {
             I.scrollTo(this.selectors.criterio);
             await I.click(this.selectors.criterio);
         }
-        
+        await I.waitForElement(this.selectors.sortBy(criterio), timer);
         await I.click(this.selectors.sortBy(criterio));
         await I.waitForElement(this.selectors.searchResults, timer);
     }
