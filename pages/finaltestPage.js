@@ -11,7 +11,7 @@ class finaltestPage {
     selectors = {
         countrySelector: (pais) => `//a[text()="${pais}"]`, //Selector en forma de función para obtener el país dinámicamente
         searchBar: '//input[@class="nav-search-input"]', //Selector de la barra de búsqueda
-        searchResults: '//section[@class="ui-search-top-keywords"]', //Selector de los resultados de búsqueda
+        searchResults: '//section[@class="ui-search-results ui-search-results--without-disclaimer"]', //Selector de los resultados de búsqueda
         filtroCondicion: (condicion) => `//span[@class="ui-search-filter-name" and text()="${condicion}"]`, //Selector para filtro de condición
         filtroUbicacion: (ubicacion) => `//span[@class="ui-search-filter-name" and text()="${ubicacion}"]`, //Selector para filtro de ubicación
         sortBy: (criterio) => `//span[text()="${criterio}"]`,
