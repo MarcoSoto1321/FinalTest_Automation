@@ -22,8 +22,6 @@ Asegúrate de tener instalado lo siguiente:
 - **npm** (instalado automáticamente con Node.js)
 - **Allure Commandline** para generar y visualizar reportes
 
-> Consulta la documentación oficial de Allure para instrucciones de instalación por sistema operativo.
-
 ## Instalación y Configuración
 
 ### 1- Clonar el repositorio
