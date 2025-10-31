@@ -22,6 +22,7 @@ class finaltestPage {
 
     async abrirPaginaInicio(pais) {
         await I.amOnPage('/');
+        await I.waitForElement(this.selectors.countrySelector(pais), timer);
         await I.click(this.selectors.countrySelector(pais));
     }
 
