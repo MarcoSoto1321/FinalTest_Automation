@@ -18,6 +18,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@codeceptjs/allure-legacy": "^1.0.2",
     "codeceptjs": "^3.7.5",
     "playwright": "^1.56.1"
   }
