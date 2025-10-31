@@ -13,6 +13,14 @@ exports.config = {
   helpers: {
     Playwright: {
       browser: 'chromium',
+      // 1. Añade un User Agent de un navegador real
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      
+      // 2. Define un tamaño de ventana de escritorio estándar
+      viewport: {
+        width: 1920,
+        height: 1080
+      },
       url: 'https://www.mercadolibre.com/',
       show: false
     }

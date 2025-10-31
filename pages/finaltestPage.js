@@ -10,7 +10,7 @@ const timer = 5;
 class finaltestPage {
     selectors = {
         countrySelector: (pais) => `//a[text()="${pais}"]`, //Selector en forma de función para obtener el país dinámicamente
-        searchBar: '//input[@placeholder="Buscar productos, marcas y más…"]', //Selector de la barra de búsqueda
+        searchBar: '//input[@class="nav-search-input"]', //Selector de la barra de búsqueda
         searchResults: '//section[@class="ui-search-top-keywords"]', //Selector de los resultados de búsqueda
         filtroCondicion: (condicion) => `//span[@class="ui-search-filter-name" and text()="${condicion}"]`, //Selector para filtro de condición
         filtroUbicacion: (ubicacion) => `//span[@class="ui-search-filter-name" and text()="${ubicacion}"]`, //Selector para filtro de ubicación
@@ -22,7 +22,6 @@ class finaltestPage {
 
     async abrirPaginaInicio(pais) {
         await I.amOnPage('/');
-        await I.waitForElement(this.selectors.countrySelector(pais), timer);
         await I.click(this.selectors.countrySelector(pais));
     }
 
