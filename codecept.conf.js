@@ -24,7 +24,12 @@ exports.config = {
   plugins: {
     htmlReporter: {
       enabled: true
-    }
+    },
+    allure: {
+      enabled: true,
+      require: '@codeceptjs/allure-legacy',
+      outputDir: './output/allure-results'
+    },
   },
   gherkin: {
     features: './features/*.feature',
