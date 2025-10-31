@@ -43,7 +43,10 @@ jobs:
 
       # 5. Ejecuta las pruebas en modo headless
       - name: Ejecutar Pruebas CodeceptJS
-        run: npx codeceptjs run --features --steps --verbose
+        run: npx codeceptjs run --features --steps
+
+      - name: Instalar Allure Commandline
+        run: npm install --save-dev @codeceptjs/allure-legacy
 
       # 6. Generar reporte Allure (Ahora incluirá los adjuntos)
       - name: Generate Allure report
