@@ -79,3 +79,7 @@ allure generate output/allure-results -o allure-report --clean
 Abrir manualmente el archivo `allure-report/index.html` en tu navegador para visualizar el reporte.
 
 ---
+## Capturas del reporte de Allure
+<img width="1495" height="927" alt="image" src="https://github.com/user-attachments/assets/0c7fecac-f71e-4a2c-974a-b1d8fe5a23c3" />
+<img width="1496" height="929" alt="image" src="https://github.com/user-attachments/assets/d8e697b0-5720-4d05-95f2-f09d8ecfe09e" />
+
