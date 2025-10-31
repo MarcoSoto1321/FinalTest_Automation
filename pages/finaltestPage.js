@@ -5,6 +5,8 @@
  */
 
 const { I } = inject();
+const fs = require('fs');
+const allure = codeceptjs.container.plugins('allure');
 const timer = 5;
 
 class finaltestPage {
@@ -23,6 +25,9 @@ class finaltestPage {
     async abrirPaginaInicio(pais) {
         await I.amOnPage('/');
         await I.click(this.selectors.countrySelector(pais));
+        await I.saveScreenshot('01-mainPage.png', true);
+        const img = fs.readFileSync('output/01-mainPage.png');
+        allure.addAttachment('01-mainPage', img, 'image/png');
     }
 
     async buscarTermino(termino) {
@@ -30,28 +35,36 @@ class finaltestPage {
         await I.fillField(this.selectors.searchBar, termino);
         await I.pressKey('Enter');
         await I.waitForElement(this.selectors.searchResults, timer);
+        await I.saveScreenshot('02-termino.png', true);
+        const img = fs.readFileSync('output/02-termino.png');
+        allure.addAttachment('02-termino', img, 'image/png');
     }
 
     async aplicarFiltroCondicion(condicion) {
         await I.click(this.selectors.filtroCondicion(condicion));
-        await I.waitForElement(this.selectors.searchResults, timer);
+        //await I.waitForElement(this.selectors.searchResults, timer);
+        await I.saveScreenshot('03-condicion.png', true);
+        const img = fs.readFileSync('output/03-condicion.png');
+        allure.addAttachment('03-condicion', img, 'image/png');
     }
 
     async aplicarFiltroUbicacion(ubicacion) {
         await I.click(this.selectors.filtroUbicacion(ubicacion));
         await I.waitForElement(this.selectors.searchResults, timer);
+        await I.saveScreenshot('04-ubicacion.png', true);
+        const img = fs.readFileSync('output/04-ubicacion.png');
+        allure.addAttachment('04-ubicacion.png', img, 'image/png');
     }
 
     async ordenarResultados(criterio) {
         const isExpanded = await I.grabAttributeFrom(this.selectors.criterio, 'aria-expanded');
+        I.scrollTo(this.selectors.criterio);
         await I.click(this.selectors.criterio);
-        if (isExpanded === 'false' || !isExpanded) {
-            I.scrollTo(this.selectors.criterio);
-            await I.click(this.selectors.criterio);
-        }
-        await I.waitForElement(this.selectors.sortBy(criterio), timer);
         await I.click(this.selectors.sortBy(criterio));
         await I.waitForElement(this.selectors.searchResults, timer);
+        await I.saveScreenshot('05-criterio.png', true);
+        const img = fs.readFileSync('output/05-criterio.png');
+        allure.addAttachment('05-criterio', img, 'image/png');
     }
 
     async verificarProductos() {
@@ -60,6 +73,9 @@ class finaltestPage {
             const precioProducto = await I.grabTextFrom(this.selectors.precioItem(i));
             console.log(`Producto ${i}: ${nombreProducto} - Precio: ${precioProducto}`);
         }
+        await I.saveScreenshot('06-verificarProd.png', true);
+        const img = fs.readFileSync('output/06-verificarProd.png');
+        allure.addAttachment('06-verificarProd', img, 'image/png');
     }
 }
 

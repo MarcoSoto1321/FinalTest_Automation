@@ -28,7 +28,11 @@ exports.config = {
     allure: {
       enabled: true,
       require: '@codeceptjs/allure-legacy',
-      outputDir: './output/allure-results'
+      outputDir: 'output/allure-results',
+      screenshots: true,
+      fullPageScreenshots: true,
+      screenshotOnFail: true,
+      stepByStepReport: true
     },
   },
   gherkin: {
