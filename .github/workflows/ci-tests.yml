@@ -1,0 +1,70 @@
+# Nombre del workflow
+name: CI de Pruebas Telcel (Marco Soto)
+
+on:
+  push:
+    branches:
+      - "gitActions"
+  pull_request:
+    branches:
+      - "gitActions"
+  # Permite ejecutarlo manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+permissions:
+  contents: write # necesario para publicar en gh-pages
+
+jobs:
+  run-tests:
+    # El job corre en una máquina virtual de Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Clona tu repositorio
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      # 2. Configura el entorno de Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24" # Asegúrate de que esta sea la versión correcta
+
+      # 3. Instala las dependencias de Node
+      - name: Instalar dependencias de Node
+        run: npm install
+
+      # 4. Instala el navegador y sus dependencias de Sistema Operativo
+      - name: Instalar navegador (solo Chromium)
+        run: npx playwright install chromium
+
+      - name: Instalar dependencias de OS (solo para Chromium)
+        run: npx playwright install-deps chromium
+
+      # 5. Ejecuta las pruebas en modo headless
+      - name: Ejecutar Pruebas CodeceptJS
+        run: npx codeceptjs run --features --steps --verbose
+
+      # 6. Generar reporte Allure (Ahora incluirá los adjuntos)
+      - name: Generate Allure report
+        if: always()
+        run: |
+          npx allure generate output/allure-results --clean -o allure-report
+
+      # 7. Subir artefactos (incluyendo Allure)
+      - name: Upload test artifacts (logs, screenshots & allure)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeceptjs-artifacts
+          path: |
+            output/**
+            allure-report/**
+
+      # 8. Publicar Allure report en GitHub Pages
+      - name: Deploy Allure report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report

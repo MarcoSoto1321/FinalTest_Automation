@@ -14,7 +14,7 @@ exports.config = {
     Playwright: {
       browser: 'chromium',
       url: 'https://www.mercadolibre.com/',
-      show: true
+      show: false
     }
   },
   include: {
